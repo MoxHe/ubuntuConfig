@@ -18,25 +18,25 @@ ZSH_THEME="robbyrussell"
 # PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
 # export PATH
 
-export PATH="/usr/local/mysql/bin:$PATH"
-PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+# export PATH="/usr/local/mysql/bin:$PATH"
+# PATH="/usr/local/opt/ruby/bin:$PATH"
+# export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 
 export EDITOR="nvim"
 
 export BAT_THEME="gruvbox"
 
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+# export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+# export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 
-alias java8='export JAVA_HOME=$JAVA_8_HOME'
-alias java11='export JAVA_HOME=$JAVA_11_HOME'
+# alias java8='export JAVA_HOME=$JAVA_8_HOME'
+# alias java11='export JAVA_HOME=$JAVA_11_HOME'
 alias o='open'
 alias v="nvim"
 alias c='clear'
 
 # default to Java 11
-java11
+# java11
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 
@@ -167,8 +167,8 @@ plugins=(
 
 alias update="source ~/.zshrc"
 source $ZSH/oh-my-zsh.sh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias r="ranger"
 
 # User configuration

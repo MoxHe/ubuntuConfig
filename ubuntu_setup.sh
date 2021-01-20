@@ -10,59 +10,57 @@
 echo "Start setting up...\n"
 echo "Checking software that need to be installed...\n"
 
-# Check for xcode tools, Install if we don't have it
-echo "Installing xcode-select..."
-xcode-select --install
+sudo -i
 
-# Install oh-my-zsh
-echo "Installing oh-my-zsh..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-# Check for Homebrew, Install if we don't have it
-echo "Installing homebrew..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
-# Update Homebrew
-echo "Updating Homebrew..."
-brew update
-brew tap homebrew/cask-versions
+# Check for zsh, Install if we don't have it
+echo "Installing zsh..."
+apt install zsh
 
 # Check for git, Install if we don't have it
 echo "Installing git..."
-brew install git
+apt install git
 
 # Check for fzf, Install if we don't have it
 echo "Installing fzf..."
-brew install fzf
+apt install fzf
 
 # Check for ripgrep, Install if we don't have it
 echo "Installing ripgrep..."
-brew install ripgrep
+apt install ripgrep
 
 # Check for tmux, Install if we don't have it
 echo "Installing tmux..."
-brew install tmux
+apt install tmux
 
 # Install zsh-syntax-highlighting
 echo "Installing zsh-syntax-highlighting..."
-brew install zsh-syntax-highlighting
+apt install zsh-syntax-highlighting
+
+# Install yarn
+echo "Installing yarn..."
+apt install yarn
 
 # Install zsh-autosuggestions
 echo "Installing zsh-autosuggestions..."
-brew install zsh-autosuggestions
+apt install zsh-autosuggestions
 
 # Check for neovim, Install if we don't have it
 echo "Installing neovim..."
-brew install neovim
+apt install neovim
 
 # Check for bat, Install if we don't have it
 echo "Installing bat..."
-brew install bat
+apt install bat
 
 # Install python3
 echo "Installing python3..."
-brew install python3
-brew link --overwrite python@3.8
+apt install python3
+
+# Install python3
+echo "Installing python3..."
+apt install python3-pip
+
+logout
 
 # Install pynvim
 echo "Installing pynvim..."
@@ -71,6 +69,33 @@ pip3 install pynvim
 # Install powerline
 echo "Installing powerline..."
 pip3 install powerline-status
+
+# Install oh-my-zsh
+echo "Installing oh-my-zsh..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+
+# Install nvm
+echo "Installing nvm..."
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | sh
+
+# Install node.js
+echo "Installing Node.js..."
+nvm install stable
+
+
+# Install node neovim
+echo "Installing node neovim..."
+npm install -g neovim
+
+mkdir -p ~/.config/nvim/after/ftplugin
+mkdir -p ~/.config/bat/config
+mkdir -p ~/.config/bat/themes
+mkdir -p ~/.config/powerline/themes/tmux
+mkdir -p ~/.config/powerline/colorschemes/tmux
+mkdir -p ~/.config/skhd
+mkdir -p ~/.config/yabai
+mkdir -p ~/.config/limelight
 
 # Hard link .zshrc
 if [ -f ~/.zshrc ]; then
@@ -87,70 +112,6 @@ if [ -f ~/.zshenv ]; then
 fi
 echo "Hard link .zshenv"
 ln ./zsh/.zshenv ~/.zshenv
-
-# Install nvm
-echo "Installing nvm..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-
-# Install node.js
-echo "Installing Node.js..."
-nvm install stable
-
-# Install yarn
-echo "Installing yarn..."
-brew install yarn
-
-# Install node neovim
-echo "Installing node neovim..."
-sudo npm install -g neovim
-
-mkdir -p ~/.config/nvim/after/ftplugin
-mkdir -p ~/.config/bat/config
-mkdir -p ~/.config/bat/themes
-mkdir -p ~/.config/powerline/themes/tmux
-mkdir -p ~/.config/powerline/colorschemes/tmux
-mkdir -p ~/.config/skhd
-mkdir -p ~/.config/yabai
-mkdir -p ~/.config/limelight
-
-# install yabai
-brew install koekeishiya/formulae/yabai
-# install jq (Lightweight and flexible command-line JSON processor)
-brew install jq
-# install skhd
-brew install koekeishiya/formulae/skhd
-
-# Hard link ~/.config/yabai/window-focus-on-destroy.zsh
-if [ -f ~/.config/yabai/window-focus-on-destroy.zsh ]; then
-  echo "Rmeoved existing ~/.config/yabai/window-focus-on-destroy.zsh"
-  rm ~/.config/yabai/window-focus-on-destroy.zsh
-fi
-echo "Hard link window-focus-on-destroy.zsh"
-ln ./yabai/window-focus-on-destroy.zsh ~/.config/yabai/window-focus-on-destroy.zsh
-
-# Hard link ~/.config/skhd/skhdrc
-if [ -f ~/.config/skhd/skhdrc ]; then
-  echo "Rmeoved existing ~/.config/skhd/skhdrc"
-  rm ~/.config/skhd/skhdrc
-fi
-echo "Hard link skhdrc"
-ln ./skhd/skhdrc ~/.config/skhd/skhdrc
-
-# Hard link ~/.config/limelight/limelightrc
-if [ -f ~/.config/limelight/limelightrc ]; then
-  echo "Rmeoved existing ~/.config/limelight/limelightrc"
-  rm ~/.config/limelight/limelightrc
-fi
-echo "Hard link limelightrc"
-ln ./limelight/limelightrc ~/.config/limelight/limelightrc
-
-# Hard link ~/.config/yabai/yabairc
-if [ -f ~/.config/yabai/yabairc ]; then
-  echo "Rmeoved existing ~/.config/yabai/yabairc"
-  rm ~/.config/yabai/yabairc
-fi
-echo "Hard link yabairc"
-ln ./yabai/yabairc ~/.config/yabai/yabairc
 
 # Hard link ~/.tmux.conf
 if [ -f ~/.tmux.conf ]; then
@@ -260,35 +221,12 @@ fi
 echo "Hard link github-markdown.css"
 ln ./nvim/github-markdown.css ~/.config/nvim/github-markdown.css
 
-# Copy iterm2 preference file com.googlecode.iterm2.plist
-if [ -f ~/Library/Preferences/com.googlecode.iterm2.plist ]; then
-  echo "Rmeoved existing com.googlecode.iterm2.plist"
-  rm ~/Library/Preferences/com.googlecode.iterm2.plist
-fi
-echo "Copy com.googlecode.iterm2.plist"
-cp ./iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
 
-# Install java
-echo "Installing java11..."
-brew cask install java11
+# # Install nerd font
+# echo "Installing nerd font..."
+# apt tap homebrew/cask-fonts
+# apt cask install font-hack-nerd-font
 
-# Install nerd font
-echo "Installing nerd font..."
-brew tap homebrew/cask-fonts
-brew cask install font-hack-nerd-font
-
-echo "Updating terminfo to add abilities of showing italics and curly underline"
-tic -x ./terminfo/xterm-256color.terminfo
-tic -x ./terminfo/tmux.terminfo
-tic -x ./terminfo/tmux-256color.terminfo
-
-# install limelight
-cd ~
-git clone https://github.com/koekeishiya/limelight.git
-cd limelight
-make
-ln -s ~/limelight/bin/limelight /usr/local/bin/limelight
-cd ~
 
 echo "\nDone!"
 

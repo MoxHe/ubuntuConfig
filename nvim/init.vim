@@ -96,7 +96,7 @@ hi DiffChange   gui=none    guifg=NONE          guibg=#305863
 hi DiffDelete   gui=none    guifg=NONE          guibg=#571319
 hi DiffText     gui=bold    guifg=NONE          guibg=#1e3940
 
-let g:python3_host_prog='/usr/local/bin/python3'
+let g:python3_host_prog='/usr/bin/python3'
 let g:airline_theme = 'base16_gruvbox_dark_hard'
 let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#enabled = 1
