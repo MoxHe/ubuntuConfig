@@ -29,7 +29,7 @@ set hidden
 set list
 set ruler
 set signcolumn=yes
-set rtp+=/usr/local/opt/fzf
+" set rtp+=/usr/local/opt/fzf
 set noequalalways
 set mouse=nv
 set guicursor=n-v-c-sm:block,i-c-ci-ve:ver25,r-cr-o:hor20
@@ -419,6 +419,7 @@ command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg   --no-heading --sort path --hidden --line-number --color=always --smart-case -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview({'options': '--no-sort --no-extended --exact --layout=reverse  --delimiter : --nth 2..', 'down': '100%'}), <bang>0)
+
 
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options':['--tiebreak=end']}), <bang>0)

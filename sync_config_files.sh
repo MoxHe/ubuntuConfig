@@ -70,6 +70,10 @@ fi
 echo "Hard link gruvbox.tmTheme"
 ln ./bat/themes/gruvbox.tmTheme ~/.config/bat/themes/gruvbox.tmTheme
 
+# Update bat binary cache
+echo "Update bat binary cache..."
+bat cache --build
+
 # Hard link powerline/colors.json
 if [ -f ~/.config/powerline/colors.json ]; then
   echo "Rmeoved existing powerline/colors.json"
